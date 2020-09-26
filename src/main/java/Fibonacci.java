@@ -1,6 +1,21 @@
 import java.math.BigInteger;
 
 public class Fibonacci {
+    /**
+     * Calculate fib(n) where:
+     * Calculate fib(n) where:
+     * <p>
+     * fib(0) = 0
+     * fib(1) = 1
+     * fin(n + 2) = fib(n + 1) + fib(n)
+     * <p>
+     * Write an algorithm that can handle n up to 2000000.
+     * <p>
+     * Your algorithm must output the exact integer answer, to full precision. Also, it MUST correctly handle negative numbers as input.
+     * The score for this question will be highly correlated with the algorithm's speed.
+     * <p>
+     * see attached files: Fibonacci.java, FibonacciTest.java
+     */
 
     public static BigInteger fib(long n) {
         if (n == 0)
