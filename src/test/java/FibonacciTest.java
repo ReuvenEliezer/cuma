@@ -14,26 +14,29 @@ public class FibonacciTest {
 
     @ParameterizedTest()
     @MethodSource({"fibArgumentsProvider"})
-    public void testFib(String expected, long input) {
-        BigInteger found = null;
+    public void testFib(Object expected, long input) {
+        if (expected == null)
+            Assertions.fail("expected value is null");
+
+        BigInteger result = null;
         try {
-            found = Fibonacci.fib(input);
+            result = Fibonacci.fib(input);
         } catch (Throwable e) {
             Assertions.fail("exception during test: " + e);
         }
-        if (found == null)
-            Assertions.fail();
-        Assertions.assertEquals(expected, found.toString());
+        if (result == null)
+            Assertions.fail("fib calculation result is null");
+        Assertions.assertEquals(expected.toString(), result.toString());
     }
 
     private static Stream<Arguments> fibArgumentsProvider() {
         return Stream.of(
-                Arguments.of(String.valueOf(0), 0),
-                Arguments.of(String.valueOf(1), 1),
-                Arguments.of(String.valueOf(1), 2),
-                Arguments.of(String.valueOf(2), 3),
-                Arguments.of(String.valueOf(3), 4),
-                Arguments.of(String.valueOf(5), 5),
+                Arguments.of(0, 0),
+                Arguments.of(1, 1),
+                Arguments.of(1, 2),
+                Arguments.of(2, 3),
+                Arguments.of(3, 4),
+                Arguments.of(5, 5),
                 Arguments.of("7896325826131730509282738943634332893686268675876375", 250),
                 Arguments.of(readTooLongStr("fibonacci_result_2000000.txt"), 2000000)
         );
