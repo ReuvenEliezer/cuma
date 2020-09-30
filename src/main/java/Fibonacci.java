@@ -17,10 +17,10 @@ public class Fibonacci {
      * see attached files: Fibonacci.java, FibonacciTest.java
      */
 
-    public static BigInteger fib(long n) {
-        if (n == 0)
+    public static BigInteger fib(BigInteger  n) {
+        if (n.intValue() == 0)
             return BigInteger.ZERO;
-        long num = Math.abs(n);
+        long num = Math.abs(n.intValue());
         if (num <= 2)
             return BigInteger.ONE;
 
@@ -35,7 +35,7 @@ public class Fibonacci {
             num /= 2;
         }
 
-        return result[1][1].multiply(BigInteger.valueOf(((n < 0) ? -1 : 1)));
+        return result[1][1].multiply(BigInteger.valueOf(((n.intValue() < 0) ? -1 : 1)));
     }
 
     public static BigInteger[][] multiplyMatrix(BigInteger[][] mat1, BigInteger[][] mat2) {

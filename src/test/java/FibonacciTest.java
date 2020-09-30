@@ -20,7 +20,7 @@ public class FibonacciTest {
 
         BigInteger result = null;
         try {
-            result = Fibonacci.fib(input);
+            result = Fibonacci.fib(new BigInteger(String.valueOf(input)));
         } catch (Throwable e) {
             Assertions.fail("exception during test: " + e);
         }
