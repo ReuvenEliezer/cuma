@@ -31,6 +31,12 @@ public class FibonacciTest {
 
     private static Stream<Arguments> fibArgumentsProvider() {
         return Stream.of(
+                Arguments.of(-1, -1),
+                Arguments.of(-1, -2),
+                Arguments.of(-2, -3),
+                Arguments.of(-3, -4),
+                Arguments.of(-5, -5),
+
                 Arguments.of(0, 0),
                 Arguments.of(1, 1),
                 Arguments.of(1, 2),

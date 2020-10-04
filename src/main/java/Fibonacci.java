@@ -17,25 +17,26 @@ public class Fibonacci {
      * see attached files: Fibonacci.java, FibonacciTest.java
      */
 
-    public static BigInteger fib(BigInteger  n) {
-        if (n.intValue() == 0)
+    public static BigInteger fib(BigInteger value) {
+        int valueAsInt = value.intValue();
+        if (valueAsInt == 0)
             return BigInteger.ZERO;
-        long num = Math.abs(n.intValue());
-        if (num <= 2)
-            return BigInteger.ONE;
+        if (valueAsInt <= 2 && valueAsInt >= -2)
+            return valueAsInt > 0 ? BigInteger.ONE : BigInteger.valueOf(-BigInteger.ONE.intValue());
 
 
         BigInteger[][] number = {{BigInteger.ONE, BigInteger.ONE}, {BigInteger.ONE, BigInteger.ZERO}};
         BigInteger[][] result = {{BigInteger.ONE, BigInteger.ONE}, {BigInteger.ONE, BigInteger.ZERO}};
 
-        while (num > 0) {
-            if (num % 2 == 1)
+        long absValue = Math.abs(valueAsInt);
+        while (absValue > 0) {
+            if (absValue % 2 == 1)
                 result = multiplyMatrix(result, number);
             number = multiplyMatrix(number, number);
-            num /= 2;
+            absValue /= 2;
         }
 
-        return result[1][1].multiply(BigInteger.valueOf(((n.intValue() < 0) ? -1 : 1)));
+        return result[1][1].multiply(BigInteger.valueOf(((valueAsInt < 0) ? -1 : 1)));
     }
 
     public static BigInteger[][] multiplyMatrix(BigInteger[][] mat1, BigInteger[][] mat2) {
