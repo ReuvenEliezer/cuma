@@ -17,18 +17,19 @@ public class Fibonacci {
      * see attached files: Fibonacci.java, FibonacciTest.java
      */
 
-    public static BigInteger fib(BigInteger value) {
-        int valueAsInt = value.intValue();
-        if (valueAsInt == 0)
+    public static BigInteger fib(long value) {
+        //        https://stackoverflow.com/questions/14661633/finding-out-nth-fibonacci-number-for-very-large-n
+
+        if (value == 0)
             return BigInteger.ZERO;
-        if (valueAsInt <= 2 && valueAsInt >= -2)
-            return valueAsInt > 0 ? BigInteger.ONE : BigInteger.valueOf(-BigInteger.ONE.intValue());
+        if (value <= 2 && value >= -2)
+            return value > 0 ? BigInteger.ONE : BigInteger.valueOf(-BigInteger.ONE.intValue());
 
 
         BigInteger[][] number = {{BigInteger.ONE, BigInteger.ONE}, {BigInteger.ONE, BigInteger.ZERO}};
         BigInteger[][] result = {{BigInteger.ONE, BigInteger.ONE}, {BigInteger.ONE, BigInteger.ZERO}};
 
-        long absValue = Math.abs(valueAsInt);
+        long absValue = Math.abs(value);
         while (absValue > 0) {
             if (absValue % 2 == 1)
                 result = multiplyMatrix(result, number);
@@ -36,7 +37,7 @@ public class Fibonacci {
             absValue /= 2;
         }
 
-        return result[1][1].multiply(BigInteger.valueOf(((valueAsInt < 0) ? -1 : 1)));
+        return result[1][1].multiply(BigInteger.valueOf(((value < 0) ? -1 : 1)));
     }
 
     public static BigInteger[][] multiplyMatrix(BigInteger[][] mat1, BigInteger[][] mat2) {

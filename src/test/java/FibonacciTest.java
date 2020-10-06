@@ -20,7 +20,7 @@ public class FibonacciTest {
 
         BigInteger result = null;
         try {
-            result = Fibonacci.fib(new BigInteger(String.valueOf(input)));
+            result = Fibonacci.fib(input);
         } catch (Throwable e) {
             Assertions.fail("exception during test: " + e);
         }
@@ -43,6 +43,8 @@ public class FibonacciTest {
                 Arguments.of(2, 3),
                 Arguments.of(3, 4),
                 Arguments.of(5, 5),
+                Arguments.of(8, 6),
+
                 Arguments.of("7896325826131730509282738943634332893686268675876375", 250),
                 Arguments.of(readTooLongStr("fibonacci_result_2000000.txt"), 2000000)
         );
