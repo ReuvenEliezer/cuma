@@ -22,23 +22,24 @@ public class Fibonacci {
 
         if (value == 0)
             return BigInteger.ZERO;
-        if (value <= 2 && value >= -2)
-            return value > 0 ? BigInteger.ONE : BigInteger.valueOf(-BigInteger.ONE.intValue());
+        if (value < 2 && value > -2)
+            return BigInteger.ONE;
 
 
+        long originalInput = value;
         BigInteger[][] number = {{BigInteger.ONE, BigInteger.ONE}, {BigInteger.ONE, BigInteger.ZERO}};
         BigInteger[][] result = {{BigInteger.ONE, BigInteger.ONE}, {BigInteger.ONE, BigInteger.ZERO}};
 
-        long absValue = Math.abs(value);
-        while (absValue > 0) {
-            if (absValue % 2 == 1)
+        while (value != 0) {
+            if (value % 2 == 1 || value % 2 == -1)
                 result = multiplyMatrix(result, number);
             number = multiplyMatrix(number, number);
-            absValue /= 2;
+            value /= 2;
         }
 
-        return result[1][1].multiply(BigInteger.valueOf(((value < 0) ? -1 : 1)));
+        return result[1][1].multiply(BigInteger.valueOf(originalInput < 0 && originalInput % 2 == 0 ? -1 : 1));
     }
+
 
     public static BigInteger[][] multiplyMatrix(BigInteger[][] mat1, BigInteger[][] mat2) {
         return new BigInteger[][]{
@@ -50,4 +51,5 @@ public class Fibonacci {
                 }
         };
     }
+
 }
