@@ -17,24 +17,23 @@ public class Fibonacci {
      * see attached files: Fibonacci.java, FibonacciTest.java
      */
 
-    public static BigInteger fib(long value) {
-        //        https://stackoverflow.com/questions/14661633/finding-out-nth-fibonacci-number-for-very-large-n
-
-        if (value == 0)
+    public static BigInteger fib(BigInteger value) {
+        long valueAsLong = value.longValue();
+        if (valueAsLong == 0)
             return BigInteger.ZERO;
-        if (value < 2 && value > -2)
+        if (valueAsLong < 2 && valueAsLong > -2)
             return BigInteger.ONE;
 
 
-        long originalInput = value;
         BigInteger[][] number = {{BigInteger.ONE, BigInteger.ONE}, {BigInteger.ONE, BigInteger.ZERO}};
         BigInteger[][] result = {{BigInteger.ONE, BigInteger.ONE}, {BigInteger.ONE, BigInteger.ZERO}};
 
-        while (value != 0) {
-            if (value % 2 == 1 || value % 2 == -1)
+        long originalInput = valueAsLong;
+        while (valueAsLong != 0) {
+            if (valueAsLong % 2 == 1 || valueAsLong % 2 == -1)
                 result = multiplyMatrix(result, number);
             number = multiplyMatrix(number, number);
-            value /= 2;
+            valueAsLong /= 2;
         }
 
         return result[1][1].multiply(BigInteger.valueOf(originalInput < 0 && originalInput % 2 == 0 ? -1 : 1));

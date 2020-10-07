@@ -1,6 +1,5 @@
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -21,35 +20,13 @@ public class FibonacciTest {
 
         BigInteger result = null;
         try {
-            result = Fibonacci.fib(input);
+            result = Fibonacci.fib(new BigInteger(String.valueOf(input)));
         } catch (Throwable e) {
             Assertions.fail("exception during test: " + e);
         }
         if (result == null)
             Assertions.fail("fib calculation result is null");
         Assertions.assertEquals(expected.toString(), result.toString());
-    }
-
-    @Test
-    public void test() {
-        for (int i = -20; i < 21; i++) {
-            System.out.println("for input: "+i+"  "+negFib(i));
-        }
-    }
-
-    public static int negFib(int n) {
-        if (n == 0 || n == 1) {
-            return n;
-        }
-        if (n == -1) {
-            return 1;
-        }
-        if (n < 0) {
-            int sign = n % 2 == 0 ? -1 : 1;
-            return sign * negFib(-n);
-        } else {
-            return negFib(n - 1) + negFib(n - 2);
-        }
     }
 
     private static Stream<Arguments> fibArgumentsProvider() {
