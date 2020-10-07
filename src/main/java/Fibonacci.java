@@ -18,12 +18,12 @@ public class Fibonacci {
      */
 
     public static BigInteger fib(BigInteger value) {
-        long valueAsLong = value.longValue();
-        if (valueAsLong == 0)
+        if (value.equals(BigInteger.ZERO))
             return BigInteger.ZERO;
-        if (valueAsLong < 2 && valueAsLong > -2)
-            return BigInteger.ONE;
 
+        long valueAsLong = value.longValue();
+        if (Math.abs(valueAsLong) == 1)
+            return BigInteger.ONE;
 
         BigInteger[][] number = {{BigInteger.ONE, BigInteger.ONE}, {BigInteger.ONE, BigInteger.ZERO}};
         BigInteger[][] result = {{BigInteger.ONE, BigInteger.ONE}, {BigInteger.ONE, BigInteger.ZERO}};
@@ -38,7 +38,6 @@ public class Fibonacci {
 
         return result[1][1].multiply(BigInteger.valueOf(originalInput < 0 && originalInput % 2 == 0 ? -1 : 1));
     }
-
 
     public static BigInteger[][] multiplyMatrix(BigInteger[][] mat1, BigInteger[][] mat2) {
         return new BigInteger[][]{
